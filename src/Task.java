@@ -2,59 +2,47 @@ import java.util.Date;
 
 public class Task implements Item {
     private int id;
-    private String title;
-    private String description;
+    public String title;
+    public String description;
+    public long timestamp;
 
-    private Date dateCreate;
-    private Date dateModified;
+    public Date dateCreate;
+    public Date dateModified;
 
-    protected Task() {}
+    protected Task() {
+        this.timestamp = new Date().getTime();
+    }
 
     public String toString() {
-        return this.title+": "+this.description;
-    }
-
-    public Date getDateCreate() {
-        return dateCreate;
-    }
-
-    public void setDateCreate(Date dateCreate) {
-        this.dateCreate = dateCreate;
-    }
-
-    public Date getDateModified() {
-        return dateModified;
-    }
-
-    public void setDateModified(Date dateModified) {
-        this.dateModified = dateModified;
+        return this.title+": "+this.description+": "+this.timestamp;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void remove() {
         System.out.format( "Удаление таска %s\n", this.title );
     };
+
+    public static Builder builder () {
+        return new Builder();
+    }
+
+    static class Builder {
+        Task task = new Task();
+
+        Task build() {
+            return task;
+        }
+
+        Builder title (String title) {
+            task.title = title;
+            return this;
+        }
+        Builder description (String description) {
+            task.description=description;
+            return this;
+        }
+    }
 }

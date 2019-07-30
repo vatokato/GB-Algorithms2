@@ -1,14 +1,14 @@
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // ------------------- builder - TaskManager ----------------------------
-        Item t1 = new TaskBuilder()
-            .newTask()
+        Item t1 = Task.builder()
             .title("задача 1")
             .description("описание первой задачи")
             .build();
 
-        Item t2 = new TaskBuilder()
-            .newTask()
+        Thread.sleep(500);
+
+        Item t2 = Task.builder()
             .title("задача 2")
             .build();
 
