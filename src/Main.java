@@ -24,5 +24,7 @@ public class Main {
             .build();
 
          System.out.println(Facade.getDayTasks("31.07.2019"));
+         System.out.println(Facade.getDayTasks("6.08.2019"));
+         System.out.println(Facade.getDayTasks());
     }
 }

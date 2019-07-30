@@ -11,6 +11,7 @@ public class Facade {
     static Date date;
 
     static ArrayList<Task> getDayTasks(String dateStr) {
+        tasksFiltered.clear();
         try {
             date = format.parse(dateStr);
         } catch (ParseException e) {
@@ -18,6 +19,16 @@ public class Facade {
         }
         for (Task task : tasks) {
             if(date.equals(task.getDateFinish())) {
+                tasksFiltered.add(task);
+            }
+        }
+        return tasksFiltered;
+    }
+
+    static ArrayList<Task> getDayTasks() {
+        tasksFiltered.clear();
+        for (Task task : tasks) {
+            if(task.getDateFinish()==null) {
                 tasksFiltered.add(task);
             }
         }
